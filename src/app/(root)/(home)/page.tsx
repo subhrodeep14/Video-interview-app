@@ -5,12 +5,40 @@ import { Button } from "@/components/ui/button";
 import { QUICK_ACTIONS } from "@/constants";
 import { useUserRole } from "@/hooks/useUserRole";
 import { SignedIn, SignedOut, SignInButton, SignUpButton, UserButton } from "@clerk/nextjs";
+import { useQuery } from "convex/react";
 import Image from "next/image";
+import { api } from "../../../../convex/_generated/api";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import Meeting from "../meeting/[id]/page";
+import MeetingModal from "@/components/MeetingModal";
 
 export default function Home() {
-  const {isInterviewer,isCandidate}=  useUserRole();
+  const {isInterviewer,isCandidate,isLoading}=  useUserRole();
+const router= useRouter()
+  const interviews=useQuery(api.interviews.getMyInterviews)
 
-  const handleQuickAction=(title:string)=>{};
+const [showModal,setShowModal]=useState(false)
+const [modalType,setModalType]=useState<"start" |"join">()
+
+
+  const handleQuickAction=(title:string)=>{
+    switch(title){
+      case "New Call":
+        setModalType("start");
+        setShowModal(true);
+        break;
+      case "Join Interview":
+        setModalType("join");
+        setShowModal(true);
+        break;
+      default:
+        router.push(`/${title.toLowerCase()}`);
+    }
+  };
+
+if(isLoading) return <p>loading...</p>
+
   return (
     <div className=" container max-w-7xl mx-auto p-6">
       <div className="rounded-lg bg-card p-6 border shadow-sm mb-10">
@@ -35,6 +63,13 @@ export default function Home() {
         ))}
 
         </div>
+        <MeetingModal
+          isOpen={showModal}
+          onClose={()=>setShowModal(false)}
+          title={modalType==="join"?"join Meeting":"Start Meeting"}
+          isJoinMeeting={modalType==="join"}
+          />
+
         </>
 
 
