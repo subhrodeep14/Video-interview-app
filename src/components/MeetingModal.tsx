@@ -29,7 +29,7 @@ const handleStart=()=>{
     setMeetingUrl("")
     onClose();
 }
-}
+
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
