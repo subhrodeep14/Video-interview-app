@@ -87,8 +87,16 @@ export const CODING_QUESTIONS: CodeQuestion[] = [
     public int[] twoSum(int[] nums, int target) {
         // Write your solution here
         
+    },
+    
+}`,
+    cpp: `class Solution {
+    vector<int> twoSum(vector<int>& nums, int target) {
+        // Write your solution here
+        
     }
 }`,
+
     },
     constraints: [
       "2 ≤ nums.length ≤ 104",
@@ -125,7 +133,12 @@ export const CODING_QUESTIONS: CodeQuestion[] = [
         // Write your solution here
         
     }
-}`,
+}`, cpp: `class Solution {
+  vector<int> twoSum(vector<int>& nums, int target) {
+      // Write your solution here
+      
+  }
+}`
     },
   },
   {
@@ -159,12 +172,18 @@ export const CODING_QUESTIONS: CodeQuestion[] = [
         // Write your solution here
         
     }
-}`,
+}`, cpp: `class Solution {
+  boolean isPalindrome( int x) {
+      // Write your solution here
+      
+  }
+}`
     },
   },
 ];
 
 export const LANGUAGES = [
+  { id: "cpp", name: "C++", icon: "/cpp1.png" },
   { id: "javascript", name: "JavaScript", icon: "/javascript.png" },
   { id: "python", name: "Python", icon: "/python.png" },
   { id: "java", name: "Java", icon: "/java.png" },
@@ -183,6 +202,7 @@ export interface CodeQuestion {
     javascript: string;
     python: string;
     java: string;
+    cpp: string;
   };
   constraints?: string[];
 }
