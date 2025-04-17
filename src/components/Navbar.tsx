@@ -1,8 +1,9 @@
 import Link from "next/link";
 import { ModeToggle } from "./ModeToggle";
 import { CodeIcon } from "lucide-react";
-import { SignedIn, UserButton } from "@clerk/nextjs";
+import { SignedIn, SignInButton, UserButton } from "@clerk/nextjs";
 import DashboardBtn from "./DashboardBtn";
+import { Button } from "@/components/ui/button";
 
 function Navbar(){
  return   <nav className="border-b">
@@ -17,7 +18,8 @@ function Navbar(){
             CodeMeet
           </span>
         </Link>
-
+       
+        
         {/* RIGHT SIDE - ACTIONS */}
         <SignedIn>
           <div className="flex items-center space-x-4 ml-auto">
